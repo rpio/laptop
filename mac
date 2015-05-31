@@ -73,6 +73,7 @@ append_to_zshrc "antigen bundle ruby"
 append_to_zshrc "antigen bundle pip"
 append_to_zshrc "antigen bundle lein"
 append_to_zshrc "antigen bundle command-not-found"
+append_to_zshrc "antigen bundle Tarrasch/zsh-autoenv"
 
 # Syntax highlighting bundle.
 append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
