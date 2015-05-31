@@ -53,6 +53,35 @@ case "$SHELL" in
     ;;
 esac
 
+#remove oh-my-zsh if present
+if type "uninstall_oh_my_zsh" > /dev/null; then
+  uninstall_oh_my_zsh
+fi
+
+# Install antigen
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
+# source .antigen.zsh
+append_to_zshrc "source .antigen.zsh"
+# Load the oh-my-zsh's library.
+append_to_zshrc "antigen use oh-my-zsh"
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+append_to_zshrc "antigen bundle git"
+append_to_zshrc "antigen bundle heroku"
+append_to_zshrc "antigen bundle sublime"
+append_to_zshrc "antigen bundle ruby"
+append_to_zshrc "antigen bundle pip"
+append_to_zshrc "antigen bundle lein"
+append_to_zshrc "antigen bundle command-not-found"
+
+# Syntax highlighting bundle.
+append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
+
+# Load the theme.
+append_to_zshrc "antigen theme robbyrussell"
+# done
+append_to_zshrc "antigen apply"
+
 brew_install_or_upgrade() {
   if brew_is_installed "$1"; then
     if brew_is_upgradable "$1"; then
@@ -221,35 +250,6 @@ append_to_zshrc "alias be='bundle exec'"
 
 npm install -g bower
 npm install -g grunt
-
-#remove oh-my-zsh if present
-if type "uninstall_oh_my_zsh" > /dev/null; then
-  uninstall_oh_my_zsh
-fi
-
-# Install antigen
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
-# source .antigen.zsh
-append_to_zshrc "source .antigen.zsh"
-# Load the oh-my-zsh's library.
-append_to_zshrc "antigen use oh-my-zsh"
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-append_to_zshrc "antigen bundle git"
-append_to_zshrc "antigen bundle heroku"
-append_to_zshrc "antigen bundle sublime"
-append_to_zshrc "antigen bundle ruby"
-append_to_zshrc "antigen bundle pip"
-append_to_zshrc "antigen bundle lein"
-append_to_zshrc "antigen bundle command-not-found"
-
-# Syntax highlighting bundle.
-append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
-
-# Load the theme.
-append_to_zshrc "antigen theme robbyrussell"
-# done
-append_to_zshrc "antigen apply"
 
 #Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 0.02
