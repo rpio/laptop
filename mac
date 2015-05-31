@@ -192,15 +192,15 @@ brew cask install dropbox
 brew cask install google-chrome
 brew cask install atom
 # brew cask install sublime-text3
-brew-cask install bittorrent-sync
-brew-cask install chrome-remote-desktop-host
-brew-cask install evernote
-brew-cask install slack
-brew-cask install sourcetree
-brew-cask install 1password
-brew-cask install iterm2
+brew cask install bittorrent-sync
+brew cask install chrome-remote-desktop-host
+brew cask install evernote
+brew cask install slack
+brew cask install sourcetree
+brew cask install 1password
+brew cask install iterm2
 
-mkdir ~/code
+mkdir -p ~/code
 
 append_to_zshrc "c() { cd ~/code/$1; }
 _c() { _files -W ~/code -/; }
