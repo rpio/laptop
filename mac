@@ -208,6 +208,11 @@ compdef _c c"
 
 append_to_zshrc "alias be='bundle exec'"
 
+npm install -g bower
+npm install -g grunt
+
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
 if [ -f "$HOME/.laptop.local" ]; then
   . "$HOME/.laptop.local"
 fi
