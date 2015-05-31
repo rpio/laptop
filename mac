@@ -191,7 +191,7 @@ brew_install_or_upgrade 'brew-cask'
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install atom
-brew cask install sublime-text3
+# brew cask install sublime-text3
 brew-cask install bittorrent-sync
 brew-cask install chrome-remote-desktop-host
 brew-cask install evernote
