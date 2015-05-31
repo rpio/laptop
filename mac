@@ -198,7 +198,7 @@ brew-cask install evernote
 brew-cask install slack
 brew-cask install sourcetree
 brew-cask install 1password
-brew-cask install iterm
+brew-cask install iterm2
 
 mkdir ~/code
 
