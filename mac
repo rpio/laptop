@@ -67,6 +67,11 @@ brew_install_or_upgrade() {
   fi
 }
 
+brew_cask_install_or_upgrade() {
+    fancy_echo "Installing %s ..." "$1"
+    brew cask install "$@"
+}
+
 brew_is_installed() {
   local name="$(brew_expand_alias "$1")"
 
@@ -139,6 +144,8 @@ brew_install_or_upgrade 'mysql'
 brew_launchctl_restart 'mysql'
 brew_install_or_upgrade 'redis'
 brew_launchctl_restart 'redis'
+brew_install_or_upgrade 'memcached'
+brew_launchctl_restart 'memcached'
 brew_install_or_upgrade 'the_silver_searcher'
 brew_install_or_upgrade 'vim'
 brew_install_or_upgrade 'ctags'
@@ -151,6 +158,7 @@ brew_install_or_upgrade 'node'
 
 brew_install_or_upgrade 'rbenv'
 brew_install_or_upgrade 'ruby-build'
+brew_install_or_upgrade 's3cmd'
 
 # shellcheck disable=SC2016
 append_to_zshrc 'eval "$(rbenv init - --no-rehash zsh)"' 1
@@ -173,6 +181,8 @@ rbenv shell "$ruby_version"
 gem update --system
 
 gem_install_or_update 'bundler'
+gem_install_or_update 'foreman'
+gem_install_or_update 'rubocop'
 
 fancy_echo "Configuring Bundler ..."
   number_of_cores=$(sysctl -n hw.ncpu)
@@ -186,23 +196,24 @@ if ! command -v rcup >/dev/null; then
 fi
 
 brew_tap 'caskroom/cask'
+brew_tap 'caskroom/versions'
 brew_install_or_upgrade 'brew-cask'
 
-brew cask install dropbox
-brew cask install google-chrome
-brew cask install atom
-# brew cask install sublime-text3
-brew cask install bittorrent-sync
-brew cask install chrome-remote-desktop-host
-brew cask install evernote
-brew cask install slack
-brew cask install sourcetree
-brew cask install 1password
-brew cask install iterm2
+brew_cask_install_or_upgrade dropbox
+brew_cask_install_or_upgrade google-chrome
+brew_cask_install_or_upgrade atom
+brew_cask_install_or_upgrade sublime-text3
+brew_cask_install_or_upgrade bittorrent-sync
+brew_cask_install_or_upgrade chrome-remote-desktop-host
+brew_cask_install_or_upgrade evernote
+brew_cask_install_or_upgrade slack
+brew_cask_install_or_upgrade sourcetree
+brew_cask_install_or_upgrade 1password
+brew_cask_install_or_upgrade iterm2
 
 mkdir -p ~/code
 
-append_to_zshrc "c() { cd ~/code/$1; }
+append_to_zshrc "c() { cd ~/code/\$1; }
 _c() { _files -W ~/code -/; }
 compdef _c c"
 
@@ -211,7 +222,49 @@ append_to_zshrc "alias be='bundle exec'"
 npm install -g bower
 npm install -g grunt
 
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+#remove oh-my-zsh if present
+if type "uninstall_oh_my_zsh" > /dev/null; then
+  uninstall_oh_my_zsh
+fi
+
+# Install antigen
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
+# source .antigen.zsh
+append_to_zshrc "source .antigen.zsh"
+# Load the oh-my-zsh's library.
+append_to_zshrc "antigen use oh-my-zsh"
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+append_to_zshrc "antigen bundle git"
+append_to_zshrc "antigen bundle heroku"
+append_to_zshrc "antigen bundle sublime"
+append_to_zshrc "antigen bundle ruby"
+append_to_zshrc "antigen bundle pip"
+append_to_zshrc "antigen bundle lein"
+append_to_zshrc "antigen bundle command-not-found"
+
+# Syntax highlighting bundle.
+append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
+
+# Load the theme.
+append_to_zshrc "antigen theme robbyrussell"
+# done
+append_to_zshrc "antigen apply"
+
+#Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0.02
+
+#Set a shorter Delay until key repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
+
+#Add a context menu item for showing the Web Inspector in web views
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+#Show the ~/Library folder
+chflags nohidden ~/Library
+
+git config --global core.editor "subl -w"
+git config --global color.ui true
 
 if [ -f "$HOME/.laptop.local" ]; then
   . "$HOME/.laptop.local"
