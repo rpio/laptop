@@ -61,7 +61,7 @@ fi
 # Install antigen
 curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
 # source .antigen.zsh
-append_to_zshrc "source .antigen.zsh"
+append_to_zshrc "source ~/.antigen.zsh"
 # Load the oh-my-zsh's library.
 append_to_zshrc "antigen use oh-my-zsh"
 
