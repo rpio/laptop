@@ -264,6 +264,8 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 #Show the ~/Library folder
 chflags nohidden ~/Library
 
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+
 git config --global core.editor "subl -w"
 git config --global color.ui true
 
