@@ -67,19 +67,34 @@ append_to_zshrc "antigen use oh-my-zsh"
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 append_to_zshrc "antigen bundle git"
-append_to_zshrc "antigen bundle heroku"
+append_to_zshrc "antigen bundle brew"
+append_to_zshrc "antigen bundle brew-cask"
+append_to_zshrc "antigen bundle gem"
+append_to_zshrc "antigen bundle osx"
 append_to_zshrc "antigen bundle sublime"
+append_to_zshrc "antigen bundle atom"
+append_to_zshrc "antigen bundle rbenv"
 append_to_zshrc "antigen bundle ruby"
-append_to_zshrc "antigen bundle pip"
-append_to_zshrc "antigen bundle lein"
-append_to_zshrc "antigen bundle command-not-found"
-append_to_zshrc "antigen bundle Tarrasch/zsh-autoenv"
+#append_to_zshrc "antigen bundle pyenv"
+#append_to_zshrc "antigen bundle pip"
 
-# Syntax highlighting bundle.
-append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
+append_to_zshrc "antigen bundle zsh-users/zsh-history-substring-search"
+append_to_zshrc "antigen bundle zsh-users/zsh-completions"
+append_to_zshrc "antigen bundle common-aliases"
+#append_to_zshrc "antigen bundle node"
+#append_to_zshrc "antigen bundle npm"
+# append_to_zshrc "antigen bundle heroku"
+
+append_to_zshrc "antigen bundle vagrant"
+append_to_zshrc "antigen bundle docker"
+#append_to_zshrc "antigen bundle packer"
+
+# append_to_zshrc "antigen bundle Tarrasch/zsh-autoenv"
+append_to_zshrc "antigen bundle unixorn/autoupdate-antigen.zshplugin"
+append_to_zshrc "antigen bundle rupa/z"
 
 # Load the theme.
-append_to_zshrc "antigen theme robbyrussell"
+append_to_zshrc "antigen bundle sindresorhus/pure"
 # done
 append_to_zshrc "antigen apply"
 
@@ -168,27 +183,14 @@ brew update
 
 brew_install_or_upgrade 'zsh'
 brew_install_or_upgrade 'git'
-brew_install_or_upgrade 'postgres'
-brew_launchctl_restart 'postgresql'
-brew_install_or_upgrade 'mysql'
-brew_launchctl_restart 'mysql'
-brew_install_or_upgrade 'redis'
-brew_launchctl_restart 'redis'
-brew_install_or_upgrade 'memcached'
-brew_launchctl_restart 'memcached'
-brew_install_or_upgrade 'the_silver_searcher'
-brew_install_or_upgrade 'vim'
-brew_install_or_upgrade 'ctags'
-brew_install_or_upgrade 'tmux'
+# brew_install_or_upgrade 'the_silver_searcher'
 brew_install_or_upgrade 'reattach-to-user-namespace'
 brew_install_or_upgrade 'imagemagick'
-brew_install_or_upgrade 'qt'
 brew_install_or_upgrade 'hub'
-brew_install_or_upgrade 'node'
+# brew_install_or_upgrade 'node'
 
 brew_install_or_upgrade 'rbenv'
 brew_install_or_upgrade 'ruby-build'
-brew_install_or_upgrade 's3cmd'
 
 # shellcheck disable=SC2016
 append_to_zshrc 'eval "$(rbenv init - --no-rehash zsh)"' 1
@@ -229,17 +231,23 @@ brew_tap 'caskroom/cask'
 brew_tap 'caskroom/versions'
 brew_install_or_upgrade 'brew-cask'
 
+brew_cask_install_or_upgrade xquartz
 brew_cask_install_or_upgrade dropbox
-brew_cask_install_or_upgrade google-chrome
+brew_cask_install_or_upgrade google-drive
+brew_cask_install_or_upgrade iterm2
+brew_cask_install_or_upgrade vlc
 brew_cask_install_or_upgrade atom
 brew_cask_install_or_upgrade sublime-text3
-brew_cask_install_or_upgrade bittorrent-sync
-brew_cask_install_or_upgrade chrome-remote-desktop-host
-brew_cask_install_or_upgrade evernote
-brew_cask_install_or_upgrade slack
-brew_cask_install_or_upgrade sourcetree
-brew_cask_install_or_upgrade 1password
-brew_cask_install_or_upgrade iterm2
+brew_cask_install_or_upgrade utorrent
+brew_cask_install_or_upgrade java
+brew_cask_install_or_upgrade flash
+brew_cask_install_or_upgrade virtualbox
+brew_cask_install_or_upgrade vmware-fusion7
+brew_cask_install_or_upgrade vagrant
+brew_cask_install_or_upgrade dockertoolbox
+
+# brew_cask_install_or_upgrade 1password
+# brew_cask_install_or_upgrade iterm2
 
 mkdir -p ~/code
 
