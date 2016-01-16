@@ -257,6 +257,10 @@ append_to_zshrc "c() { cd ~/Setting/Mac/\$1; }
 _c() { _files -W ~/Setting/Mac -/; }
 compdef _c c"
 
+  append_to_zshrc 'source ~/.zsh-alias'
+  append_to_zshrc 'source ~/.token.local'
+
+
 append_to_zshrc "alias be='bundle exec'"
 
 npm install -g bower
