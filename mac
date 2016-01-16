@@ -81,21 +81,22 @@ append_to_zshrc "antigen bundle zsh-users/zsh-history-substring-search"
 append_to_zshrc "antigen bundle zsh-users/zsh-completions"
 append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
 append_to_zshrc "antigen bundle common-aliases"
-#append_to_zshrc "antigen bundle node"
-#append_to_zshrc "antigen bundle npm"
-# append_to_zshrc "antigen bundle heroku"
+append_to_zshrc "antigen bundle node"
+append_to_zshrc "antigen bundle npm"
+append_to_zshrc "antigen bundle heroku"
 
 append_to_zshrc "antigen bundle vagrant"
 #append_to_zshrc "antigen bundle docker"
 #append_to_zshrc "antigen bundle packer"
 
-# append_to_zshrc "antigen bundle Tarrasch/zsh-autoenv"
+append_to_zshrc "antigen bundle Tarrasch/zsh-autoenv"
 append_to_zshrc "antigen bundle unixorn/autoupdate-antigen.zshplugin"
 append_to_zshrc "antigen bundle rupa/z"
 
 # Load the theme.
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
+append_to_zshrc "antigen theme robbyrussell"
+#append_to_zshrc "antigen bundle mafredri/zsh-async"
+#append_to_zshrc "antigen bundle sindresorhus/pure"
 # done
 append_to_zshrc "antigen apply"
 
@@ -188,7 +189,7 @@ brew_install_or_upgrade 'git'
 brew_install_or_upgrade 'reattach-to-user-namespace'
 brew_install_or_upgrade 'imagemagick'
 brew_install_or_upgrade 'hub'
-# brew_install_or_upgrade 'node'
+brew_install_or_upgrade 'node'
 
 brew_install_or_upgrade 'rbenv'
 brew_install_or_upgrade 'ruby-build'
@@ -231,7 +232,7 @@ fi
 brew_tap 'homebrew/binary'
 brew_tap 'homebrew/completions'
 brew_tap 'homebrew/dupes'
-brew_tap 'homebrew/fuse'
+
 brew_tap 'caskroom/cask'
 brew_tap 'caskroom/versions'
 brew_install_or_upgrade 'brew-cask'
@@ -240,24 +241,20 @@ brew_cask_install_or_upgrade xquartz
 brew_cask_install_or_upgrade dropbox
 brew_cask_install_or_upgrade google-drive
 brew_cask_install_or_upgrade iterm2
-brew_cask_install_or_upgrade vlc
-brew_cask_install_or_upgrade atom
-brew_cask_install_or_upgrade sublime-text3
-brew_cask_install_or_upgrade utorrent
 brew_cask_install_or_upgrade java
+brew_cask_install_or_upgrade atom
 brew_cask_install_or_upgrade flash
 brew_cask_install_or_upgrade virtualbox
-brew_cask_install_or_upgrade vmware-fusion7
 brew_cask_install_or_upgrade vagrant
-#brew_cask_install_or_upgrade dockertoolbox
+
 
 # brew_cask_install_or_upgrade 1password
 # brew_cask_install_or_upgrade iterm2
 
-mkdir -p ~/code
+mkdir -p ~/Setting/Mac
 
-append_to_zshrc "c() { cd ~/code/\$1; }
-_c() { _files -W ~/code -/; }
+append_to_zshrc "c() { cd ~/Setting/Mac/\$1; }
+_c() { _files -W ~/Setting/Mac -/; }
 compdef _c c"
 
 append_to_zshrc "alias be='bundle exec'"
@@ -277,7 +274,7 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 #Show the ~/Library folder
 chflags nohidden ~/Library
 
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+
 
 git config --global core.editor "subl -w"
 git config --global color.ui true
