@@ -72,7 +72,6 @@ append_to_zshrc "antigen bundle brew-cask"
 append_to_zshrc "antigen bundle gem"
 append_to_zshrc "antigen bundle osx"
 append_to_zshrc "antigen bundle sublime"
-append_to_zshrc "antigen bundle atom"
 append_to_zshrc "antigen bundle rbenv"
 append_to_zshrc "antigen bundle ruby"
 #append_to_zshrc "antigen bundle pyenv"
@@ -80,13 +79,14 @@ append_to_zshrc "antigen bundle ruby"
 
 append_to_zshrc "antigen bundle zsh-users/zsh-history-substring-search"
 append_to_zshrc "antigen bundle zsh-users/zsh-completions"
+append_to_zshrc "antigen bundle zsh-users/zsh-syntax-highlighting"
 append_to_zshrc "antigen bundle common-aliases"
 #append_to_zshrc "antigen bundle node"
 #append_to_zshrc "antigen bundle npm"
 # append_to_zshrc "antigen bundle heroku"
 
 append_to_zshrc "antigen bundle vagrant"
-append_to_zshrc "antigen bundle docker"
+#append_to_zshrc "antigen bundle docker"
 #append_to_zshrc "antigen bundle packer"
 
 # append_to_zshrc "antigen bundle Tarrasch/zsh-autoenv"
@@ -94,7 +94,8 @@ append_to_zshrc "antigen bundle unixorn/autoupdate-antigen.zshplugin"
 append_to_zshrc "antigen bundle rupa/z"
 
 # Load the theme.
-append_to_zshrc "antigen bundle sindresorhus/pure"
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
 # done
 append_to_zshrc "antigen apply"
 
@@ -227,6 +228,10 @@ if ! command -v rcup >/dev/null; then
   brew_install_or_upgrade 'rcm'
 fi
 
+brew_tap 'homebrew/binary'
+brew_tap 'homebrew/completions'
+brew_tap 'homebrew/dupes'
+brew_tap 'homebrew/fuse'
 brew_tap 'caskroom/cask'
 brew_tap 'caskroom/versions'
 brew_install_or_upgrade 'brew-cask'
@@ -244,7 +249,7 @@ brew_cask_install_or_upgrade flash
 brew_cask_install_or_upgrade virtualbox
 brew_cask_install_or_upgrade vmware-fusion7
 brew_cask_install_or_upgrade vagrant
-brew_cask_install_or_upgrade dockertoolbox
+#brew_cask_install_or_upgrade dockertoolbox
 
 # brew_cask_install_or_upgrade 1password
 # brew_cask_install_or_upgrade iterm2
